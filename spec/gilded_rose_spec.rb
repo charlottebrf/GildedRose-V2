@@ -32,23 +32,6 @@ describe GildedRose do
     it "does not change the properties of the items during 30 iterations" do
       expect(rose.items).to eq rose.items
     end
-
-    it "is my golden key which does not change the values of the items" do
-      items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
-      rose = GildedRose.new(items)
-      30.times { rose.update_quality() }
-      expect(items[0].name).to eq "Aged Brie"
-      expect(items[0].sell_in).to eq -29
-      expect(items[0].quality).to eq 50
-
-      expect(items[1].name).to eq "Sulfuras, Hand of Ragnaros"
-      expect(items[1].sell_in).to eq 1
-      expect(items[1].quality).to eq 2
-
-      expect(items[2].name).to eq "Backstage passes to a TAFKAL80ETC concert"
-      expect(items[2].sell_in).to eq -29
-      expect(items[2].quality).to eq 0
-    end
   end
 end
 
