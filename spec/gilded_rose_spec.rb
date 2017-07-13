@@ -53,5 +53,18 @@ describe GildedRose do
       expect(items[2].quality).to eq 0
     end
   end
+end
 
+  describe Item do
+    subject(:brie_item) { described_class.new("Aged Brie", 1, 2) }
+    subject(:sulfurus_item) { described_class.new("Sulfuras, Hand of Ragnaros", 1, 2) }
+    subject(:backstage_item) { described_class.new("Backstage passes to a TAFKAL80ETC concert", 1, 2) }
+
+    describe "#to_s" do
+    it "corrrectly prints all 3 different types of items" do
+      expect(brie_item.to_s()).to eq "Aged Brie, 1, 2"
+      expect(sulfurus_item.to_s()).to eq "Sulfuras, Hand of Ragnaros, 1, 2"
+      expect(backstage_item.to_s()).to eq "Backstage passes to a TAFKAL80ETC concert, 1, 2"
+    end
+  end
 end

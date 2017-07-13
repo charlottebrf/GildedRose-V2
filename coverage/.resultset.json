@@ -58,6 +58,20 @@
         null,
         null,
         null,
+        null,
+        1,
+        null,
+        2,
+        2,
+        2,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/charlottefereday/Development/Week_10/GildedRose-Test-2/lib/gilded_rose.rb": [
@@ -122,17 +136,17 @@
         1,
         null,
         1,
-        6,
-        6,
-        6,
+        9,
+        9,
+        9,
         null,
         null,
         1,
-        0,
+        3,
         null,
         null
       ]
     },
-    "timestamp": 1499942781
+    "timestamp": 1499944250
   }
 }
