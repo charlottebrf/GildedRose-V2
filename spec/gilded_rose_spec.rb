@@ -6,24 +6,6 @@ describe GildedRose do
 
   describe "#update_quality" do
 
-    it "does not change the name during 1 iteration" do
-      expect(rose.items[0].name).to eq "Aged Brie"
-      expect(rose.items[1].name).to eq "Sulfuras, Hand of Ragnaros"
-      expect(rose.items[2].name).to eq "Backstage passes to a TAFKAL80ETC concert"
-    end
-
-    it "does not change the sell_in value during 1 iteration" do
-      expect(rose.items[0].sell_in).to eq 1
-      expect(rose.items[1].sell_in).to eq 1
-      expect(rose.items[2].sell_in).to eq 1
-    end
-
-    it "does not change the quality value during 1 iteration" do
-      expect(rose.items[0].sell_in).to eq 1
-      expect(rose.items[1].sell_in).to eq 1
-      expect(rose.items[2].sell_in).to eq 1
-    end
-
     it "does not change the name during 30 iterations" do
       result = 30.times { rose.update_quality() }
       expect(rose.items[0].name).to eq "Aged Brie"
@@ -51,15 +33,10 @@ describe GildedRose do
       expect(rose.items).to eq rose.items
     end
 
-
-
-
     it "is my golden key which does not change the values of the items" do
       items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
       rose = GildedRose.new(items)
       30.times { rose.update_quality() }
-      p 'These are the items!'
-      p rose.items
       expect(items[0].name).to eq "Aged Brie"
       expect(items[0].sell_in).to eq -29
       expect(items[0].quality).to eq 50
@@ -75,12 +52,12 @@ describe GildedRose do
   end
 end
 
-  describe Item do
-    subject(:brie_item) { described_class.new("Aged Brie", 1, 2) }
-    subject(:sulfurus_item) { described_class.new("Sulfuras, Hand of Ragnaros", 1, 2) }
-    subject(:backstage_item) { described_class.new("Backstage passes to a TAFKAL80ETC concert", 1, 2) }
+describe Item do
+  subject(:brie_item) { described_class.new("Aged Brie", 1, 2) }
+  subject(:sulfurus_item) { described_class.new("Sulfuras, Hand of Ragnaros", 1, 2) }
+  subject(:backstage_item) { described_class.new("Backstage passes to a TAFKAL80ETC concert", 1, 2) }
 
-    describe "#to_s" do
+  describe "#to_s" do
     it "corrrectly prints all 3 different types of items" do
       expect(brie_item.to_s()).to eq "Aged Brie, 1, 2"
       expect(sulfurus_item.to_s()).to eq "Sulfuras, Hand of Ragnaros, 1, 2"
