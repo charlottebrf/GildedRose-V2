@@ -1,31 +1,41 @@
 require 'gilded_rose'
-require 'spec_helper'
 
 describe GildedRose do
+  items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
+  subject(:rose) { described_class.new(items) }
 
   describe "#update_quality" do
-    it "does not change the name" do
-      items = [Item.new("foo", 0, 0)]
-      GildedRose.new(items).update_quality()
-      expect(items[0].name).to eq "foo"
+    it "does not change the name during 30 iterations" do
+      result = 30.times { rose.update_quality() }
+      expect(rose.items[0].name).to eq "Aged Brie"
+      expect(rose.items[1].name).to eq "Sulfuras, Hand of Ragnaros"
+      expect(rose.items[2].name).to eq "Backstage passes to a TAFKAL80ETC concert"
     end
 
-    it "does not change the sell in value" do
-      items = [Item.new("foo", 1, 2)]
-      GildedRose.new(items).update_quality()
-      p items
-      expect(items[0].sell_in).to eq 0
+    it "does not change the sell_in value during 30 iterations" do
+      expect(rose.items[0].sell_in).to eq -29
+      expect(rose.items[1].sell_in).to eq 1
+      expect(rose.items[2].sell_in).to eq -29
     end
 
-    it "does not change the sell in value" do
-      items = [Item.new("foo", 1, 2)]
-      GildedRose.new(items).update_quality()
-      p items
-      expect(items[0].sell_in).to eq 0
+    it "does not change the quality value during 30 iterations" do
+      expect(rose.items[0].quality).to eq 50
+      expect(rose.items[1].quality).to eq 2
+      expect(rose.items[2].quality).to eq 0
     end
 
-    it "prints the end result" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
+    it "does not change the number of items during 30 iterations" do
+      expect(rose.items.length).to eq 3
+    end
+
+    it "does not change the properties of the items during 30 iterations" do
+      p 'these are rose items'
+      p rose.items
+      expect(rose.items).to eq rose.items
+    end
+
+    it "is my golden key which does not change the values of the items" do
+      items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
       rose = GildedRose.new(items)
       30.times { rose.update_quality() }
       p 'These are the items!'
@@ -33,13 +43,15 @@ describe GildedRose do
       expect(items[0].name).to eq "Aged Brie"
       expect(items[0].sell_in).to eq -29
       expect(items[0].quality).to eq 50
-      # [#<Item:0x007fc868026c18 @name="Aged Brie", @sell_in=-29, @quality=50>]
-      # [#<Item:0x007fa27401e398 @name="Sulfuras, Hand of Ragnaros", @sell_in=1, @quality=2>]
-      # [#<Item:0x007ffc1db29d20 @name="Backstage passes to a TAFKAL80ETC concert", @sell_in=-29, @quality=0>]
+
+      expect(items[1].name).to eq "Sulfuras, Hand of Ragnaros"
+      expect(items[1].sell_in).to eq 1
+      expect(items[1].quality).to eq 2
+
+      expect(items[2].name).to eq "Backstage passes to a TAFKAL80ETC concert"
+      expect(items[2].sell_in).to eq -29
+      expect(items[2].quality).to eq 0
     end
-
-
   end
-
 
 end
