@@ -9,11 +9,7 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       if item.name == "Sulfuras, Hand of Ragnaros" && item.quality > 0
-        # if item.quality > 0
-        #   if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
-          # end
-        # end
+        item.quality = item.quality - 1
       else
         if item.quality < 50
           item.quality = item.quality + 1
