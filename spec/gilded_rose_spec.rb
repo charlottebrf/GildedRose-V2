@@ -1,10 +1,29 @@
 require 'gilded_rose'
 
 describe GildedRose do
-  items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
+  items = [Item.new("Aged Brie", 1, 1), Item.new("Sulfuras, Hand of Ragnaros", 1, 1), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 1)]
   subject(:rose) { described_class.new(items) }
 
   describe "#update_quality" do
+
+    it "does not change the name during 1 iteration" do
+      expect(rose.items[0].name).to eq "Aged Brie"
+      expect(rose.items[1].name).to eq "Sulfuras, Hand of Ragnaros"
+      expect(rose.items[2].name).to eq "Backstage passes to a TAFKAL80ETC concert"
+    end
+
+    it "does not change the sell_in value during 1 iteration" do
+      expect(rose.items[0].sell_in).to eq 1
+      expect(rose.items[1].sell_in).to eq 1
+      expect(rose.items[2].sell_in).to eq 1
+    end
+
+    it "does not change the quality value during 1 iteration" do
+      expect(rose.items[0].sell_in).to eq 1
+      expect(rose.items[1].sell_in).to eq 1
+      expect(rose.items[2].sell_in).to eq 1
+    end
+
     it "does not change the name during 30 iterations" do
       result = 30.times { rose.update_quality() }
       expect(rose.items[0].name).to eq "Aged Brie"
@@ -20,7 +39,7 @@ describe GildedRose do
 
     it "does not change the quality value during 30 iterations" do
       expect(rose.items[0].quality).to eq 50
-      expect(rose.items[1].quality).to eq 2
+      expect(rose.items[1].quality).to eq 1
       expect(rose.items[2].quality).to eq 0
     end
 
@@ -29,10 +48,11 @@ describe GildedRose do
     end
 
     it "does not change the properties of the items during 30 iterations" do
-      p 'these are rose items'
-      p rose.items
       expect(rose.items).to eq rose.items
     end
+
+
+
 
     it "is my golden key which does not change the values of the items" do
       items = [Item.new("Aged Brie", 1, 2), Item.new("Sulfuras, Hand of Ragnaros", 1, 2), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 2)]
