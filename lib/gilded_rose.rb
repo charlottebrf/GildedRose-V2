@@ -8,19 +8,25 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if item.name == "Sulfuras, Hand of Ragnaros" && item.quality > 0
-        item.quality -= 1
-      else
+
+      #Sulfuras item
+      if item.name == "Sulfuras, Hand of Ragnaros"
+        sulfurus_item(item)
+      end
+
         if item.quality < 50
           item.quality += 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50
-            item.quality += 1
-            if item.sell_in < 6 && item.quality < 50
+
+          #backstage item
+          if item.name == "Backstage passes to a TAFKAL80ETC concert"
+            backstage_item(item)
+
+
+            if item.sell_in < 6
               item.quality += 1
             end
           end
         end
-      end
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in -= 1
       end
@@ -28,10 +34,8 @@ class GildedRose
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
                 item.quality += 1
               end
-            end
           else
             item.quality -= item.quality
           end
@@ -44,18 +48,18 @@ class GildedRose
     end
   end
 end
-#
-# Second Method
-# if item.quality < 50
-# +          item.quality = item.quality + 1
-# +          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-# +            if item.sell_in < 11
-# +              if item.quality < 50
-# +                item.quality = item.quality + 1
-# +              end
-# +            end
-#
-#
+
+private
+
+def sulfurus_item(item)
+  if item.quality > 0
+    item.quality -= 1
+  end
+end
+
+def backstage_item(item)
+  item.quality += 1
+end
 
 
 class Item
