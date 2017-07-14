@@ -19,23 +19,21 @@ class GildedRose
         backstage_item(item)
       end
 
-      #normal item
+      #normal item, aged brie or backstage pass
       if item.quality < 50 && item.sell_in < 6
         item.quality += 1
       end
 
-
+      #normal item, aged brie or backstage pass
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in -= 1
       end
 
 
-      if item.sell_in < 0
+      if item.sell_in < 0 && item.quality > 0
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
               item.quality += 1
-            end
           else
             item.quality -= item.quality
           end
