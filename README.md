@@ -7,7 +7,7 @@ A first attempt at the Gilded Rose Tech Test in Ruby in 2.5 hours!
 
 ## Getting started
 
-`$ git clone git@github.com:charlottebrf/Gilded-Rose-Tech-Test.git`
+`$ git clone git@github.com:charlottebrf/GildedRose-V2.git`
 `$ bundle install`
 
 ## Usage
